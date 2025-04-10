@@ -1,0 +1,9 @@
+<p>users-list works!</p>
+<div class="userrs-container" >
+    <!-- <app-blog-card *ngFor="let blogs of UsersArray" ></app-blog-card> -->
+   <div *ngFor="let user of UsersArray" (click)="openProfile(user.id!)">
+    <app-user-card  [User]="user" ></app-user-card>
+   </div>
+</div>
+
+

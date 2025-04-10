@@ -1,0 +1,44 @@
+<div class="navbar">
+    <!-- Logo Section -->
+    <div class="logo">
+        <a href=""><img
+                src="https://s3.ca-central-1.amazonaws.com/logojoy/logos/215741007/noBgWhite.png?80927.30000001192"
+                alt="Logo"></a>
+    </div>
+
+    <!-- Search Section -->
+    <app-search-filter></app-search-filter>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+        <a routerLink="">Home</a>
+        <a routerLink="about">About</a>
+        <a routerLink="contact">Contact</a>
+    </div>
+
+    <div *ngIf="!isLogged">
+        <button routerLink="user/login">Login</button>
+        <button routerLink="user/signup">SignUp</button>
+    </div>
+
+    <div *ngIf="loggedUser.id">
+        <!-- <button  routerLink="home/blogs">Read</button> -->
+        <app-nav-button [label]="'Read'" (btnclick)="navigate('home/blogs')"></app-nav-button>
+
+
+        <!-- <button  routerLink="user/profile/blog/create">Write</button> -->
+
+        <app-nav-button [label]="'Write'" (btnclick)="navigate('user/profile/blog/create')"></app-nav-button>
+
+        <button *ngIf="loggedUser.role==='Admin'" routerLink="adminpanel">Admin Panel</button>
+    </div>
+
+    <!-- Profile Image Section -->
+    <!-- <i class="pi-bolt"></i> -->
+    <img [ngStyle]="{'width':'40px','color':'white'}" src="" alt="">
+    <div class="profileimg" routerLink="user/profile">
+
+        <img [src]="loggedUserImg?loggedUserImg:'https://cdn-icons-png.flaticon.com/128/149/149071.png'"
+            alt="Profile Image">
+    </div>
+</div>

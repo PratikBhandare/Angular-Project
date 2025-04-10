@@ -1,0 +1,32 @@
+<!-- <p>{{loggedUser |json }}</p> -->
+
+
+
+<div class="profile-box">
+    <div class="profile">
+        <!-- <img src="assets/profileimg.jpg" alt=""> -->
+        <img [src]="profileImg" alt="not found">
+        <p>Name:{{loggedUser.name}}</p>
+        <p>Email:{{loggedUser.email}}</p>
+        <p>UserId:{{loggedUser.id}}</p>
+        <!-- <button>Update Profile</button> -->
+    </div>
+
+    <a href=""><button href="home/blogs" (click)="logOut()">Log Out</button></a>
+</div>
+
+<button routerLink="blog/create">CreateBlog</button>
+<button routerLink="/home/blogs">Read Blogs</button>
+
+<button (click)="getUserBlogs(loggedUser.id!)" routerLink="./blog/display">My Posts</button>
+<!-- <button (click)="getUserSubscriptions()" routerLink="subscriptions/display">My Subscriptions</button> -->
+
+<router-outlet></router-outlet>
+
+
+
+
+<!-- <button (click)="getPass()">GetPass</button> -->
+
+
+<!-- <app-g-form [fields]="[{name:'content',type:'text'}]" (value)="getValue($event)" ></app-g-form> -->

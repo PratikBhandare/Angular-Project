@@ -1,0 +1,143 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    box-shadow: 0 10px 20px rgba(7, 7, 7, 0.767); /* Added shadow to navbar bottom */
+
+    
+}
+
+/* Logo section */
+.logo img {
+    width: 80px;
+    height: auto;
+}
+
+/* Search section */
+.search {
+    display: flex;
+    align-items: center;
+    background-color: #444;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.search img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.search input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    outline: none;
+}
+
+.search input::placeholder {
+    color: #bbb;
+}
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff5833bb;
+}
+button {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #ff5833c4;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Profile image section */
+.profileimg img {
+    
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+/* Category Filter Section */
+.filter {
+    background-color: #444;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px; /* Set a width for the filter dropdown */
+}
+
+.filter select {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    outline: none;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.filter select option {
+    background-color: #333;
+    color: white;
+}
+
+.filter select:focus {
+    outline: none;
+}
+
+/* Optional: Add a small icon next to the select dropdown if you'd like */
+.filter img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

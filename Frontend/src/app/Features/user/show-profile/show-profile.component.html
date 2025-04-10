@@ -1,0 +1,30 @@
+<div class="profile-container">
+    <div class="profile-header">
+      <img [src]="'assets/profile-images/'+User.profileImg" alt="Profile Picture" class="profile-pic" />
+      <div class="profile-info">
+        <h1>{{ User.name }}</h1>
+        <p class="bio">{{ user.bio }}</p>
+        <p class="total-posts">Total Posts: {{ User.posts?.length }}</p>
+      </div>
+      <button *ngIf="loggedUser.role==='Admin'" (click)="disableUser(User.id!)" class="subscribe-button" >
+        <!-- {{ isDisabled ? 'Enable' : 'Disable' }} -->
+          Ban
+      </button>
+</div>
+  
+    <div class="blog-posts">
+      <h2>Recent Blog Posts</h2>
+      <div *ngFor="let post of User.posts" class="blog-post">
+        <h3>{{ post.title }}</h3>
+        <!-- <p class="post-date">{{ post.date }}</p> -->
+        <p class="post-excerpt">{{ post.content | slice: 0:100 }}...</p>
+        
+        <div class="post-actions">
+          <button (click)="openActiveBlog(post.id)" class="like-button">
+            <img src="https://cdn-icons-png.flaticon.com/128/709/709724.png" alt="">({{ post.views }})
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

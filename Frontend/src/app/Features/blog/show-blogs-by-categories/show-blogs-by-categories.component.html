@@ -1,0 +1,16 @@
+<h2>Category:{{category}}</h2>
+
+<ng-container *ngTemplateOutlet="BlogsArray.length>0?blogs:notFound"></ng-container>
+
+<ng-template #blogs>
+    <div class="blog-container">
+        <div class="card" *ngFor="let blogs of BlogsArray">
+            <app-blog-card [Blog]="blogs"></app-blog-card>
+        </div>
+    </div>
+</ng-template>
+
+
+
+
+<ng-template #notFound>No Blogs Found</ng-template>

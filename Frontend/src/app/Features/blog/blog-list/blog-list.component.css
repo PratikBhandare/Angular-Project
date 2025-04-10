@@ -1,0 +1,129 @@
+.blog-container{
+    /* margin-top: -px; */
+    display: flex;
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    justify-content: flex-start; /* Align items to the start */
+    padding: 20px;
+    gap: 1rem;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%; /* Ensure the container takes up the full width */
+    background-color: #dfdfdf4b;
+    margin-bottom: 10px;
+    border-color: black;
+    border: 1px;
+}
+
+/* General style for all <a> tags inside the blog container */
+a {
+  text-decoration: none; /* Removes underline */
+  color: #007bff; /* Set the text color to blue */
+  font-size: 16px; /* Font size for the links */
+  font-weight: bold; /* Make the text bold */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and transform effects */
+}
+
+/* Hover effect */
+a:hover {
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline; /* Underline on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Styling for the 'All Blogs >' link */
+a[href=""] {
+  font-size: 18px; /* Slightly larger font for the 'All Blogs' link */
+  color: #333; /* Darker color for this particular link */
+}
+
+a.routerLink {
+  color: #28a745; /* Green color for routerLinks */
+}
+
+/* Make sure the links have spacing between them for readability */
+a {
+  margin-right: 15px; /* Right margin for spacing */
+}
+
+
+
+.search-bar input, .category-filter select {
+  padding: 8px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.search-blog-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Container for Search and Filter */
+.controls {
+    display: flex; /* Enable Flexbox for the container */
+    /* align-items:flex-end; Vertically align items in the center */
+    padding-top: 20px;
+    gap: 20px; /* Add some space between the search and filter */
+  }
+  
+  /* Existing Search Bar Styles (no changes needed for layout) */
+  .search {
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 15px; Remove this as it's now in a flex container */
+  }
+  
+  .search label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .search input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    flex-grow: 1; /* Allows the input to take up remaining space */
+  }
+  
+  .search input[type="text"]::placeholder {
+    color: #999;
+  }
+  
+  .search input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Existing Filter by Category Styles (no changes needed for layout) */
+  .category-filter {
+    
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 15px; Remove this as it's now in a flex container */
+  }
+  
+  .category-filter label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .category-filter select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .category-filter select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }

@@ -1,0 +1,76 @@
+/* Search section */
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    gap: 5px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    background-color: #444;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.search img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.search input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    outline: none;
+}
+
+.search input::placeholder {
+    color: #bbb;
+}
+
+/* Category Filter Section */
+.filter {
+    background-color: #444;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px; /* Set a width for the filter dropdown */
+}
+
+.filter select {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    outline: none;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.filter select option {
+    background-color: #333;
+    color: white;
+}
+
+.filter select:focus {
+    outline: none;
+}
+
+/* Optional: Add a small icon next to the select dropdown if you'd like */
+.filter img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

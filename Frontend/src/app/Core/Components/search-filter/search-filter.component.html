@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="search">
+        <img src="https://images.icon-icons.com/510/PNG/96/android-search_icon-icons.com_50501.png" alt="Search Icon">
+        <input type="text" id="search" [(ngModel)]="searchTerm" (input)="searchBlogs()" placeholder="Search blogs...">
+        
+    </div>
+
+    <!-- <div class="search">
+        <label for="search">Search Blogs:</label>
+      </div>
+     -->
+    <div class="filter">
+        <select name="" id=""  [(ngModel)]="selectedCategory" (change)="filterByCategory(selectedCategory)" >
+            <option [defaultSelected]>Select Category</option>
+            <option value="Technical">Technical</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Sports">Sports</option>
+            <option value="Finance">Finance</option>
+            <option value="Fashion">Fashion</option>
+        </select>
+    </div>
+</div>

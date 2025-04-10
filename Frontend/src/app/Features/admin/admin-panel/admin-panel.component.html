@@ -1,0 +1,27 @@
+<p>admin-panel works!</p>
+
+
+
+
+<!-- 
+<div class="profile-box">
+    <div class="profile">
+    
+        <img [src]="profileImg" alt="not found">
+        <p>{{loggedUser.name}}</p>
+        <p>{{loggedUser.email}}</p>
+        <p>{{loggedUser.id}}</p>
+        <button>Update Profile</button>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="sidebar">
+      <button routerLink="./getusers">Users</button>
+      <button routerLink="./getblogrequests">Blog Requests</button>
+    </div>
+    
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>

@@ -1,0 +1,227 @@
+/* Style for the blog card container */
+.blogCard {
+  background-color: #ffffff; /* White background for the card */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.466); /* Soft shadow for depth */
+  padding: 20px; /* Inner padding for spacing */
+  margin: 20px 0; /* Margin between cards */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean font */
+  min-width: 500px; 
+  max-width: 500px; 
+  width: 100%; /* Full width on smaller screens */
+  min-height: 370px;
+  max-height: 370px;
+
+}
+.blog-card-image{
+  width: auto; /* Ensure the image takes up full width of its container */
+    height: 100px;/* Set a fixed height (adjust as needed) */
+     /* Ensure the image covers the area without stretching */
+    border-radius: 8px; /* Optional: adds rounded corners */
+    
+}
+
+/* Hover effect for the blog card */
+.blogCard:hover {
+  transform: translateY(-5px); /* Slightly lift the card on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* More intense shadow */
+}
+
+/* Style for the title (heading) */
+.blogCard p:first-child {
+  font-size: 24px; /* Larger font size for the title */
+  font-weight: 600; /* Bold font */
+  color: #333; /* Dark color for the title */
+  margin-bottom: 10px; /* Space below the title */
+  line-height: 1.4; /* Improved line height for readability */
+}
+
+/* Style for the category */
+.blogCard p:nth-child(2) {
+  font-size: 16px; /* Medium size for category */
+  color: #666; /* Lighter color for category */
+  margin-bottom: 15px; /* Space below the category */
+  line-height: 1.6; /* Increase line height for readability */
+}
+
+/* Style for the description */
+.blogCard p:nth-child(3) {
+  font-size: 14px; /* Smaller font size for description */
+  color: #444; /* Slightly darker color for the content */
+  line-height: 1.8; /* Line height for content */
+  word-wrap: break-word; /* Ensure content breaks at line ends */
+  margin-bottom: 15px; /* Space below the description */
+}
+
+/* Style for the content preview */
+.blogCard p:nth-child(4) {
+  font-size: 14px; /* Smaller font size for content preview */
+  color: #444; /* Slightly darker color for the content */
+  margin-bottom: 15px; /* Space below the content preview */
+}
+
+/* Info section (Author, Views, Likes) */
+.blogCard div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* Space between info items */
+  font-size: 14px; /* Smaller font size for the info */
+  color: #777; /* Light gray color for info text */
+  margin-top: 15px; /* Top margin to separate from content */
+}
+
+.blogCard div p {
+  margin: 0; /* Remove default margin from info items */
+}
+
+/* Image styling for the view counter (eye icon) */
+.blogCard div img {
+  width: 18px; /* Set width for the eye icon */
+  height: 18px; /* Set height for the eye icon */
+  margin-right: 10px; /* Space to the right of the icon */
+}
+
+/* Like icon styling */
+.blogCard div a img {
+  width: 20px; /* Set width for the like icon */
+  height: 20px; /* Set height for the like icon */
+  margin-left: 10px; /* Space to the left of the icon */
+  cursor: pointer; /* Change cursor on hover to pointer */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.blogCard div a img:hover {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+}
+
+/* Optional: Style for spacing around blog cards in a container */
+.blogCard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Spacing between multiple blog cards */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blogCard {
+    padding: 15px; /* Reduced padding for smaller screens */
+    margin: 15px 0; /* Reduced margin */
+  }
+
+  .blogCard p:first-child {
+    font-size: 20px; /* Smaller title for smaller screens */
+  }
+
+  .blogCard p:nth-child(2),
+  .blogCard p:nth-child(3),
+  .blogCard p:nth-child(4) {
+    font-size: 14px; /* Slightly smaller text for smaller screens */
+  }
+
+  .blogCard div {
+    flex-direction: row; /* Keep info items in a row on smaller screens */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: center; /* Vertically align items */
+    gap: 15px; /* Reduced gap */
+  }
+
+  .blogCard div p:first-child { /* Author name */
+    margin-right: auto; /* Push author name to the left */
+  }
+
+  .blogCard div img {
+    width: 16px; /* Reduce the size of the view icon on small screens */
+    height: 16px;
+    margin-right: 5px;
+  }
+
+  .blogCard div a {
+    margin-left: 0; /* Reset left margin for like button */
+  }
+
+  .blogCard div a img {
+    width: 18px; /* Adjust like icon size on smaller screens */
+    height: 18px;
+    margin-left: 5px;
+  }
+}
+
+
+.addcomment {
+  display: flex; /* Align items in a row */
+  align-items: center; /* Vertically center the items */
+  gap: 10px; /* Add some space between avatar and input */
+  padding: 10px; /* Add padding for better layout */
+  border: 1px solid #ccc; /* Optional: Border around the comment section */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background */
+
+  /* Add these properties to make it fixed */
+  position: fixed;
+  bottom: 0; /* Stick it to the bottom of the viewport */
+  left: 0;
+  width: 100%; /* Make it span the entire width */
+  z-index: 1000; /* Ensure it stays on top of other content */
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.89); /* Optional: Add a shadow for better separation */
+}
+
+.addcomment p-avatar {
+  width: 40px; /* Set the size of the avatar */
+  height: 40px; /* Ensure the avatar is circular */
+}
+
+.addcomment input {
+  flex-grow: 1; /* Allow the input to take available space */
+  padding: 8px 12px; /* Add padding inside the input */
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners for input */
+  font-size: 14px; /* Set font size */
+  background-color: #fff; /* Input background color */
+}
+
+.addcomment input::placeholder {
+  color: #888; /* Lighter color for placeholder */
+}
+
+.comments {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0; /* Light border around each comment */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  font-size: 14px; /* Font size for comment text */
+  color: #333; /* Dark text color for readability */
+  line-height: 1.5; /* Line height for better text spacing */
+}
+
+/* Optional: Add a hover effect for each comment */
+.comments:hover {
+  background-color: #f1f1f1; /* Slightly darker background on hover */
+  border-color: #ccc; /* Change border color on hover */
+}
+i{
+  margin-left: 20px;
+  width: 40px;
+  cursor: pointer;
+}
+
+
+.blogCard {
+  position: relative; /* This is crucial for positioning the icons relative to the card */
+}
+
+/* Create a container for the icons and position it in the top-right */
+.icon-container {
+  position: absolute; /* Absolutely position the icons */
+  top: 10px; /* Adjust this value for vertical spacing from the top */
+  right: 10px; /* Adjust this value for horizontal spacing from the right */
+  display: flex; /* Use flex to arrange icons horizontally */
+  gap: 5px; /* Space between the icons */
+}
+
+.icon-container i {
+  font-size: 18px; /* Set a specific size for the icons */
+  cursor: pointer; /* Pointer cursor on hover */
+}

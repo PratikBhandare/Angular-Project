@@ -1,0 +1,31 @@
+/* .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+
+.card{
+    background-color: red;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+app-blog-card{
+    width: 90%;
+    min-width: 300px
+    /* margin-left: 20px; */
+/* }
+
+ */ 
+
+.blog-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  

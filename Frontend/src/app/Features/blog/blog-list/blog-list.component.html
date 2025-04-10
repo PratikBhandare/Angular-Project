@@ -1,0 +1,56 @@
+
+<div *ngIf="(state === '/home/blogs')">
+
+
+<ng-container *ngTemplateOutlet="searchedBlogs.length!==0?searchResult:AllCategories"></ng-container>
+
+<ng-template #searchResult>
+  <h2>Searched Result</h2>
+  <div class="search-blog-container">
+    <app-blog-card *ngFor="let blogs of searchedBlogs" [Blog]="blogs"></app-blog-card>
+  </div>
+</ng-template>
+
+   
+
+  <ng-template #AllCategories>
+
+    <div >
+      
+      <a href="">All Blogs ></a>
+      <div class="blog-container">
+        <app-blog-card *ngFor="let blogs of BlogsArray" [Blog]="blogs"></app-blog-card>
+      </div>
+  
+      <a routerLink="blogsbycategory/technical">Technical Blogs</a>
+      <div class="blog-container">
+        <app-blog-card *ngFor="let blogs of TechnicalBlogs" [Blog]="blogs"></app-blog-card>
+      </div>
+
+      <a routerLink="blogsbycategory/sports">Sports Blogs></a>
+      <div class="blog-container">
+        <app-blog-card *ngFor="let blogs of SportsBlogs" [Blog]="blogs"></app-blog-card>
+      </div>
+  
+      <a routerLink="blogsbycategory/lifestyle">LifeStyle Blogs></a>
+      <div class="blog-container">
+        <app-blog-card *ngFor="let blogs of LifeStyleBlogs" [Blog]="blogs"></app-blog-card>
+      </div>
+
+
+    </div>
+    
+  
+    <div *ngIf="state!=='/home/blogs'" class="blog-container">
+      <app-blog-card *ngFor="let blogs of userBlogs" [Blog]="blogs"></app-blog-card>
+    </div>
+  
+  </ng-template>
+
+</div>
+
+<div *ngIf="(state === '/user/profile/blog/display')">
+  <div class="blog-container">
+    <app-blog-card *ngFor="let blogs of userBlogs" [Blog]="blogs"></app-blog-card>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+/* Reset some styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 90vh;
+    background-image: url('https://slidebazaar.com/wp-content/uploads/2022/05/powerpoint-white-background-slide-SB02298.jpg'); /* Use your image here */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #080707ab;
+    text-align: center;
+    opacity: 0; /* Initially hidden for animation */
+    animation: fadeIn 2s forwards; /* Animation to fade in */
+    z-index: 10; /* Make navbar appear above hero */
+    /* height:min-content, */
+    
+    /* Inset shadow applied from all sides inside the image */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6); /* Inset shadow from all sides */
+  /* box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);  */
+  }
+  
+  /* Animation for fade-in effect */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Hero Content */
+  .hero-content {
+    padding: 0 20px;
+    max-width: 800px;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    animation: slideIn 1.5s ease-out; /* Animation for sliding in */
+    opacity: 0;
+    animation-delay: 0.5s; /* Delay to sync with the fade-in */
+    animation-fill-mode: forwards;
+  }
+  
+  .hero-description {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    animation: slideIn 1.5s ease-out;
+    opacity: 0;
+    animation-delay: 1s; /* Delay to sync with the title */
+    animation-fill-mode: forwards;
+  }
+  
+  .cta-button {
+    padding: 12px 30px;
+    background: #ff5733;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    animation: fadeInButton 2s ease-in-out;
+    opacity: 0;
+    animation-delay: 1.5s; /* Delay to sync with the description */
+    animation-fill-mode: forwards;
+  }
+  
+  .cta-button:hover {
+    background: #e04d2b;
+  }
+  
+  /* Animation for the sliding effect of title and description */
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Button Fade-in Animation */
+  @keyframes fadeInButton {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  

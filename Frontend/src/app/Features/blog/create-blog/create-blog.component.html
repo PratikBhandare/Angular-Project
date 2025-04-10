@@ -1,0 +1,35 @@
+<div class="box">
+    <form [formGroup]="BlogForm" (ngSubmit)="create()"  enctype="multipart/form-data">
+    
+        <label>Title:</label>
+        <input type="text" formControlName="title" required><br>
+        
+
+        <label>Description:</label>
+        <input type="text" formControlName="description" required><br>
+
+        <label>img:</label>
+        <input type="file"  (change)="onFileSelected($event)">
+
+      
+
+        <label>Content:</label>
+        <input type="text" formControlName="content" required><br>
+
+        <label>Category:</label>
+        <select formControlName="category" required>
+            <option value="">Select Category</option>
+            <option value="Technical">Technical</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Sports">Sports</option>
+            <option value="Finance">Finance</option>
+            <option value="Fashion">Fashion</option>
+            <!-- <option value="health">Health</option> -->
+        </select><br>
+    
+        <button type="submit">Submit</button>
+        <!-- <a routerLink="">Don't Have Account ?</a> -->
+    </form>
+    
+
+</div>

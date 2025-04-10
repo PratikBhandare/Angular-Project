@@ -1,0 +1,297 @@
+.Blog-component {
+  padding: 40px; /* Add padding to the Blog-component */
+  position: relative; /* Ensure absolute positioning works for the button container */
+}
+
+.action-buttons {
+  display: flex; /* Align the buttons/icons horizontally */
+  justify-content: flex-end; /* Align to the right */
+  gap: 10px; /* Space between the buttons/icons */
+  position: absolute; /* Position it relative to the parent container */
+  top: 20px; /* Space from the top of the container */
+  right: 20px; /* Space from the right of the container */
+}
+
+.action-buttons button, .action-buttons i {
+  cursor: pointer; /* Ensure all buttons and icons are clickable */
+}
+
+
+
+.addcomment {
+    display: flex; /* Align items in a row */
+    align-items: center; /* Vertically center the items */
+    gap: 10px; /* Add some space between avatar and input */
+    padding: 10px; /* Add padding for better layout */
+    border: 1px solid #ccc; /* Optional: Border around the comment section */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+  
+    /* Add these properties to make it fixed */
+    position: fixed;
+    bottom: 0; /* Stick it to the bottom of the viewport */
+    left: 0;
+    width: 100%; /* Make it span the entire width */
+    z-index: 1000; /* Ensure it stays on top of other content */
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.89); /* Optional: Add a shadow for better separation */
+  }
+  
+  .addcomment p-avatar {
+    width: 40px; /* Set the size of the avatar */
+    height: 40px; /* Ensure the avatar is circular */
+  }
+  
+  .addcomment input {
+    flex-grow: 1; /* Allow the input to take available space */
+    padding: 8px 12px; /* Add padding inside the input */
+    border: 1px solid #ccc; /* Border around the input */
+    border-radius: 20px; /* Rounded corners for input */
+    font-size: 14px; /* Set font size */
+    background-color: #fff; /* Input background color */
+  }
+  
+  .addcomment input::placeholder {
+    color: #888; /* Lighter color for placeholder */
+  }
+  
+  /* Comment container */
+.comments {
+ 
+    
+    padding: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 0.5px solid #3a96ff; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    font-size: 14px; /* Font size */
+    color: #333; /* Dark text color */
+    line-height: 1.5; /* Line height for readability */
+    position: relative; /* Positioning context for absolute elements */
+  }
+  
+  /* Author name and avatar */
+  .comment-header {
+    
+    
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center; /* Vertically align items */
+    position: absolute;
+    top: -10px; /* Position above the border */
+    left: 15px; /* Inside from the left */
+    background-color: #fff; /* White background to cover border */
+    padding: 0 5px; /* Padding around name and avatar */
+    border: 0.5px solid #6df100; /* Same border color */
+    border-radius: 50px; /* Optional rounded corners */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+
+  .comment-section{
+    /* background-color: rgba(192, 192, 192, 0.219); */
+    height: fit-content;
+  }
+  
+  /* Avatar styling */
+  .author-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* Circular avatar */
+    margin-right: 7px; /* Space between avatar and name */
+  }
+  
+  /* Author name styling */
+  .author-name {
+    font-size: 14px;
+    color: #333; /* Dark color */
+    font-weight: bold; /* Bold name */
+  }
+  
+  /* Trash icon styling */
+  .comment-trash-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 15px;
+    color: #e74c3c; /* Red color */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+
+  .comment-edit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 40px;
+    font-size: 15px;
+    color: #000000; /* Red color */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* margin-bottom: 0px; */
+  }
+  .comment-trash-icon:hover {
+    transform: scale(1.2); /* Enlarge icon on hover */
+  }
+  
+  /* Style for the Blog Content */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the Toast component */
+  p-toast {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+  }
+  
+  /* Like button */
+  button {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Comments button */
+  button:last-child {
+    background-color: #28a745;
+  }
+  
+  button:last-child:hover {
+    background-color: #218838;
+  }
+  
+  /* Styling for the Comments section (if visible) */
+  div.comments-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* If visible2 is true, style the comments section to show it */
+  div.comments-section.hidden {
+    display: none;
+  }
+  
+  /* Additional spacing around elements */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .blog-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+  
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+/* Title */
+h3 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #666;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+i,span{
+  margin-top: 12px;
+}
+
+.profile-img{
+    
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.author-container {
+  display: flex; /* Align children in a row */
+  align-items: center; /* Vertically align the image and name in the center */
+  gap: 10px; /* Add space between the image and the name */
+}
+
+.profile-img {
+  width: 40px; /* Set a fixed width for the profile image */
+  height: 40px; /* Set a fixed height for the profile image */
+  border-radius: 50%; /* Makes the image round */
+  object-fit: cover; /* Ensures the image covers the assigned space without distortion */
+}
+
+.author-container p {
+  margin: 0; /* Remove margin from the <p> element */
+  font-size: 16px; /* Optional: adjust font size for name */
+}

@@ -1,0 +1,160 @@
+<div class="Blog-component">
+  
+
+  <p-divider [ngStyle]="{'margin-top':'30px'}" />
+  <div class="author-container" (click)="openProfile(Blog.author.id)">
+    <img class="profile-img" [src]="authorImg" alt="Author" >
+    <p>{{Blog.author.name}}</p>
+    <p>{{Blog.createdAt | date}}</p>
+
+  </div>
+
+  <p-divider  />
+  <i class="pi pi-trash" *ngIf="Blog.author.id===loggedUser.id || loggedUser.role==='Admin' " (click)="deletBlog()"></i>
+
+  <div class="action-buttons">
+    <button (click)="like()">Like</button>
+    <i class="pi pi-heart-fill" [ngStyle]="{'color':'red', 'cursor':'pointer'}" (click)="like()"></i>
+    <span>{{Blog.likesCount}}</span>
+    <button (click)="visible2=true" data-="Blog">Comments</button>
+    <i class="pi pi-comment"></i>
+    <span>{{Blog.comments.length}}</span>
+    <!-- <button (click)="updateBlog()" *ngIf="Blog.author.id === loggedUser.id">update</button> -->
+    <p-button (click)="op.toggle($event)" icon="pi pi-share-alt" label="Share"></p-button>
+  </div>
+  
+  <ng-template #title>
+    <h3>Title:{{Blog.title}}</h3>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="editBlogTitle?editTitle:title"></ng-container>
+
+  <span class="pi pi-pencil" (click)="editBlogTitle=true" *ngIf="Blog.author.id===loggedUser.id"></span>
+
+  
+  
+
+  <!-- <h2>image:</h2> -->
+  <img class="blog-img" [src]="blogImg" alt="not found..">
+
+  <p-divider />
+
+  <h2 [ngStyle]="{'margin':'0'}">Description:</h2>
+
+
+  <span class="pi pi-pencil" (click)="editBlogDescription=true" *ngIf="Blog.author.id===loggedUser.id"></span>
+
+  <ng-container *ngTemplateOutlet="editBlogDescription?editDescription:description"></ng-container>
+  
+  <ng-template #description>
+    <p>
+      {{Blog.description}}
+    </p>
+  </ng-template>
+  <p-divider />
+
+  <p-divider />
+
+  <h2 [ngStyle]="{'margin':'0'}">Content:</h2>
+
+
+  <span class="pi pi-pencil" (click)="editBlogContent=true" *ngIf="Blog.author.id===loggedUser.id"></span>
+
+  <ng-container *ngTemplateOutlet="editBlogContent?editContent:content"></ng-container>
+  
+  <ng-template #content>
+    <p>
+      {{Blog.content}}
+    </p>
+  </ng-template>
+  <p-divider />
+
+
+</div>
+
+
+<p-drawer header="Comments" [(visible)]="visible2" position="right">
+
+  <div class="comment-section">
+    <div class="comments" *ngFor="let comment of Blog.comments.reverse()">
+
+      
+
+      <!-- <p>{{comment.author.id|json}}</p> For finding the author of the comment -->
+
+      <div class="comment-header">
+        <img class="author-avatar" [src]="'assets/profile-images/'+comment.author.profileImg" alt="Author Avatar" />
+        <span class="author-name">{{comment.author.name}}</span>
+      </div>
+      <ng-template #commentContent><p>{{comment.content.substring(0, 100) + "..."}}</p></ng-template>
+      <p>{{comment.content.substring(0, 100) + "..."}}</p>
+
+
+      <!-- <span class="pi pi-pencil comment-edit-icon" (click)="editBLogComment=true" *ngIf="comment.author.id===loggedUser.id"></span> -->
+      <ng-template #editComment *ngIf="comment.id===loggedUser.id" >
+        <app-g-form  [fields]="[{name:'content',type:'text',placeholder:'update Content'}]" [class]="'comment'" (value)="updateComment($event)"></app-g-form>
+      </ng-template>
+
+      <!-- <ng-template #editComment ></ng-template> -->
+
+
+      <span class="pi pi-trash comment-trash-icon"
+        *ngIf="comment.author.id===loggedUser.id ||Blog.author.id===loggedUser.id "
+        (click)="deletComment(comment.id)"></span>
+      <!-- <ng-container *ngTemplateOutlet="editBLogComment?editComment:commentContent"></ng-container> -->
+
+    </div>
+  </div>
+
+
+
+  <div class="addcomment">
+    <!-- <p-avatar label=`${}`  shape="circle" /> -->
+    <img class="avatar" [src]="avatar" alt="not found">
+    <form [formGroup]="commentForm" (submit)="addComment(Blog,Blog.author)">
+      <input type="text" placeholder="Add a comment..." formControlName="comment">
+      <!-- <button type="submit">Submit</button> -->
+    </form>
+    <i class="pi pi-send" (click)="addComment(Blog,Blog.author)"></i>
+  </div>
+
+
+
+  <!-- share button -->
+
+
+  <!-- <button (click)="op.toggle($event)">share</button> -->
+  <p-popover #op>
+    <div class="flex flex-col gap-4 w-[25rem]">
+      <div>
+        <span class="font-medium text-surface-900 dark:text-surface-0 block mb-2">Share this document</span>
+        <p-inputgroup>
+          <input pInputText [value]="CopyUrl" readonly
+            class="w-[25rem]" />
+          <p-inputgroup-addon>
+            <i class="pi pi-copy"></i>
+          </p-inputgroup-addon>
+        </p-inputgroup>
+      </div>
+    </div>
+
+
+
+
+    <ng-template #editContent>
+      <app-g-form [fields]="[{name:'content',type:'textarea'}]" [blogId]="Blog.id" [Data]="Blog.content"  (value)="updateBlog($event)"></app-g-form>
+      <button (click)="editBlogContent=false">Cancel</button>
+    </ng-template>
+
+    <ng-template #editTitle>
+      <app-g-form [fields]="[{name:'title',type:'text'}]" [blogId]="Blog.id" [Data]="Blog.title" (value)="updateBlog($event)"></app-g-form>
+      <button (click)="editBlogTitle=false">Cancel</button>
+    </ng-template>
+
+    <ng-template #editDescription>
+      <app-g-form [fields]="[{name:'description',type:'text'}]" [blogId]="Blog.id" [Data]="Blog.description" (value)="updateBlog($event) "></app-g-form>
+      <button (click)="editBlogDescription=false">Cancel</button>
+    </ng-template>
+
+    
+
+    

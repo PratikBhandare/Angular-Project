@@ -1,0 +1,109 @@
+/* Global reset for smooth rendering */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f0f0; /* Light gray background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #333; /* Dark gray text */
+}
+
+/* Style for the form container */
+form {
+  background-color: #fff; /* White background */
+  max-width: 420px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 16px;
+  /* border-color: black; */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.466); /* Subtle shadow */
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect for the form */
+form:hover {
+  transform: translateY(-5px);
+}
+
+/* Style for the labels */
+label {
+  display: block;
+  font-size: 15px;
+  color: #444; /* Slightly darker gray label */
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Style for the input fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 10px;
+  background-color: #f9f9f9; /* Even lighter gray background */
+  font-size: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Focus state for input fields */
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #555; /* Darker gray focus border */
+  background-color: #f0f0f0; /* Light gray focus background */
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #333; /* Dark gray button */
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Submit button hover effect */
+button[type="submit"]:hover {
+  background-color: #222; /* Slightly darker gray on hover */
+}
+
+/* Style for the error messages */
+.small.error {
+  font-size: 13px;
+  color: #d32f2f; /* Darker red for errors */
+  margin-top: -8px;
+  margin-bottom: 20px;
+}
+
+/* Style for the signup link */
+a[routerLink] {
+  color: #555; /* Darker gray link */
+  text-align: center;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: block;
+  margin-top: 15px;
+}
+
+/* Signup link hover effect */
+a[routerLink]:hover {
+  color: #333; /* Darker gray on hover */
+  text-decoration: underline;
+  cursor: pointer;
+}

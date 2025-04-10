@@ -1,0 +1,17 @@
+.userrs-container{
+    /* margin-top: -px; */
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap; /* Prevent items from wrapping to the next line */
+    justify-content: center; /* Align items to the start */
+    align-items: center;
+    /* padding: 20px; */
+    gap: 10px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%; /* Ensure the container takes up the full width */
+    background-color: #dfdfdf4b;
+    margin-bottom: 10px;
+    border-color: black;
+    border: 1px;
+    padding: 20px;
+}

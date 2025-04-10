@@ -1,0 +1,42 @@
+
+<Form [formGroup]="signUpForm" (ngSubmit)="register($event)" enctype="multipart/form-data">
+
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name" required>
+    <!-- Show error message if the name field is touched and invalid -->
+    <div *ngIf="signUpForm.get('name')!.touched && signUpForm?.get('name')!.invalid" [ngStyle]="{'color':'red'}">
+      <small class="error" *ngIf="signUpForm.get('name')?.hasError('required')" >Name is required.</small>
+      <small class="error" *ngIf="signUpForm.get('name')?.hasError('pattern')">Please provide name in correct format.</small>
+    </div><br>
+
+    <label >Photo:</label>
+    <input type="file" (change)="onFileSelected($event)"><br><br>
+  
+    <label for="email">Email:</label>
+    <input id="email" type="text" formControlName="email" required>
+    <!-- Show error message if the email field is touched and invalid -->
+    <!-- <div *ngIf="signUpForm.get('email')!.touched && signUpForm.get('email')!.invalid " [ngStyle]="{'color':'red'}">
+      <small class="error">Email is required.</small>
+    </div> -->
+    <div *ngIf="signUpForm.get('email')!.touched && signUpForm.get('email')!.invalid " [ngStyle]="{'color':'red'}">
+      <small class="error">Provide correct email</small>
+    </div><br>
+    
+    <label for="password">Password:</label>
+    <input id="password" type="password" formControlName="password" required>
+    <!-- Show error message if the password field is touched and invalid -->
+    <div *ngIf="(signUpForm.get('password')!.touched && signUpForm.get('password')!.invalid)" [ngStyle]="{'color':'red'}">
+      <small class="error">Password is required.</small>
+    </div><br>
+  
+    <!-- Indicate if any field is dirty -->
+    <!-- <div *ngIf="signUpForm.dirty">
+      <small>The form has been modified.</small>
+    </div> -->
+  
+    <button type="submit" [disabled]="signUpForm.invalid">Submit</button>
+    <a routerLink="/user/login">Alredy Have an Account ?</a>
+</Form>
+
+
+

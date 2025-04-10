@@ -1,0 +1,23 @@
+<!-- <div class="login">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" >
+        <label for="">Email</label>
+        <input type="text" formControlName="email">
+
+        <label for="">Password</label>
+        <input type="password" formControlName="email">
+    </form>
+</div> -->
+
+<div class="box">
+    <Form [formGroup]="loginForm" (submit)="login()">
+    
+        <label>Email:</label>
+        <input type="text" formControlName="email" required><br>
+        <label>PassWord:</label>
+        <input type="password" formControlName="password" required><br>
+    
+        <button type="submit">Submit</button>
+        <a routerLink="/user/signup">Don't Have Account ?</a>
+    </Form>
+</div>
+
