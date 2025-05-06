@@ -30,21 +30,21 @@ export class AuthGuard implements CanActivate{
 
   canActivate(route: ActivatedRouteSnapshot,state:RouterStateSnapshot): boolean {
     if(this.isLogged==false){
-      // alert("Please Login First...!");
-      // this.routeService.nexrRoutSubject.next(state.url);
+
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Log in First' });
 
       console.log(state.url);
       
       this.router.navigate([`user/login`])
       return false;
+      
     }else{
 
       console.log("LoggedIn..");
       
       console.log(state.url);
       
-      // this.router.navigate([`${state.url}`])
+  
       return true;
     }
   }

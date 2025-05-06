@@ -13,8 +13,7 @@
     <div class="views-container"> <img src="https://cdn-icons-png.flaticon.com/128/709/709724.png" alt="">
       <p>{{Blog.views}}</p>
     </div>
-    <div class="likes-container"> <a href=""><img src="https://cdn-icons-png.flaticon.com/128/3128/3128313.png"
-          alt=""></a>
+    <div class="likes-container"> <a href=""><img src="https://cdn-icons-png.flaticon.com/128/3128/3128313.png" alt=""></a>
       <p>{{Blog.likesCount}}</p>
     </div>
   </div>
@@ -38,32 +37,3 @@
 
 
 
-<p-drawer header="Drawer" data-="Blog" [(visible)]="visible" position="full">
-  <h3>TItile:{{Blog.title}}</h3>
-  Content:
-  <p>
-    {{Blog.content}}
-  </p>
-  <!-- <p-toast /> -->
-  <button (click)="like() ">Like</button>
-  <button (click)="visible2=true" data-="Blog">Comments</button>
-  <!-- <p-message severity="info" icon="pi pi-send" text="Info Message" styleClass="h-full" /> -->
-
-  <p-drawer header="Comments" [(visible)]="visible2" position="right" >
-
-    
-    <div class="comments" *ngFor="let comment of Blog.comments">{{comment.content.substring(0,100)+"..."}}</div>
-    
-        
-    <div class="addcomment">
-      <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
-      <form [formGroup]="commentForm" (submit)="addComment(Blog,Blog.author)">
-        <input type="text" placeholder="Add a comment..." formControlName="comment" >
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
-
-    
-  </p-drawer>
-</p-drawer>

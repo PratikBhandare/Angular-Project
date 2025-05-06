@@ -11,6 +11,7 @@ import { UserService } from '../../user/user.service';
 import { Router } from '@angular/router';
 import { GFormComponent } from '../../../Shared/Components/g-form/g-form.component';
 import { NotFoundError } from '@angular/core/primitives/di';
+import EventEmitter from 'events';
 
 @Component({
   selector: 'app-show-blog',
@@ -43,11 +44,13 @@ export class SHowBlogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     console.log("blog show component loaded");
     console.log("service:",this.service);
+
     this.service.loggedUser$.subscribe((data)=>{
       console.log("inside showblog",data);
       
       this.loggedUser = data
     })
+    
     this.route.queryParams.subscribe((val:any)=>{
       console.log(val);
       this.postId=val.postId
@@ -108,23 +111,65 @@ export class SHowBlogComponent implements OnInit, AfterViewInit, OnDestroy {
     
   }
 
+  // setting variable for toaster 
   value:boolean=true;
+  e = new EventEmitter();
+  
 
-  ngAfterViewInit(): void {
+
+  async checkLogin(){
+    new Promise((resolve,reject)=>{
+    console.log();
+    
     if(!this.loggedUser.id){
       setTimeout(() => {
-        if(this.value){
-        this.messageService.add({ severity: 'error', summary: 'Acces Denied!', detail: 'Log in First' });
+        reject(console.log("Not Logged in"))
+      }, 3000);
+    
+    }else{
+      setTimeout(() => {
+        resolve(console.log("Logged in"))
+      }, 3000);
+    }
+
+  }).then(()=>{
+    console.log("Logged in");
+    this.e.emit("check",true)
+  }).catch(()=>{
+    console.log("Not Logged In");
+    
+  });
+  
+}
+
+  
+  async ngAfterViewInit(): Promise<void> {
+    // this.e.on("check",(v)=>{
+    //   console.log("Event emitted",v);
+      
+    // })
+    // await this.checkLogin();
+    // console.log("My Promise",r);
+    
+   
+     
+
+    // if(!this.loggedUser.id){
+
+
+    //   setTimeout(() => {
+    //     if(this.value){
+    //     this.messageService.add({ severity: 'error', summary: 'Acces Denied!', detail: 'Log in First' });
         
-        setTimeout(() => {
-          this.router.navigate(['/user/login'])
-        }, 1000);
+    //     setTimeout(() => {
+    //       this.router.navigate(['/user/login'])
+    //     }, 1000);
         
 
-        }
+    //     }
         
-      }, 60000);
-    }
+    //   }, 60000);
+    // }
     
   }
 
@@ -266,7 +311,7 @@ export class SHowBlogComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log("in card delete");
       
   
-      let r=this.blogService.deletBlog(this.Blog.id,this.Blog.author)
+      let r=this.blogService.deletBlog(this.Blog.id,this.Blog.author.id)
       r.subscribe((val:any)=>{
         console.log(val);
         if(val.msg){

@@ -16,7 +16,6 @@ import { UserService } from '../../../Features/user/user.service';
 export class GFormComponent implements OnInit ,OnChanges{
   
 
-  @ViewChild(SHowBlogComponent) show!: SHowBlogComponent;
 
   loggeduser!:any;
 
@@ -39,7 +38,7 @@ export class GFormComponent implements OnInit ,OnChanges{
 
   ngOnInit(): void {
     this.createForm();
-    console.log(this.show);
+    // console.log(this.show);
     
   }
 
@@ -53,32 +52,17 @@ export class GFormComponent implements OnInit ,OnChanges{
     const group:any = {};
 
     this.fields.forEach(field => {
-      group[field.name] = [this.formData[field.name] || '', this.getValidators(field)];
+      group[field.name] = [this.formData[field.name]];
     });
 
     this.form = this.fb.group(group);
   }
 
-  // Get the appropriate validators based on field configuration
-  getValidators(field: any) {
-    const validators = [];
-    if (field.required) {
-      validators.push(Validators.required);
-    }
-    if (field.minLength) {
-      validators.push(Validators.minLength(field.minLength));
-    }
-    if (field.maxLength) {
-      validators.push(Validators.maxLength(field.maxLength));
-    }
-    return validators;
-  }
-
   // Submit the form data
   onSubmit() {
     
-    if (this.form.valid) {
-      let r=this.blogService.updateBlog(this.blogId,this.form.value,this.loggeduser.id).subscribe((val:any)=>{
+   
+      this.blogService.updateBlog(this.blogId,this.form.value,this.loggeduser.id).subscribe((val:any)=>{
         console.log(val);
         if(val.msg){
         // this.messageService.add({ severity: 'success', summary: '', detail: 'Updated !' })
@@ -90,9 +74,7 @@ export class GFormComponent implements OnInit ,OnChanges{
       })
     
       console.log(this.form.value);
-    } else {
-      console.log('Form is invalid');
-    }
+   
   }
 
   mysubMit(){

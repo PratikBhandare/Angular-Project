@@ -16,17 +16,41 @@ const secretKey = process.env.SECRET_KEY;
 class SubscriptionController {
     addSubscription(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
-            let sub = req.body;
-            let r = yield subscription_service_1.default.addSubscription(sub);
-            if (r === false) {
-                resp.json({
-                    err: "Alredy Subscribed...!"
-                });
-            }
-            else {
-                resp.json({
+            try {
+                let sub = req.body;
+                yield subscription_service_1.default.addSubscription(sub);
+                resp.status(200).json({
                     msg: "success"
                 });
+            }
+            catch (e) {
+                // resp.send(e)
+                // console.log("Error Object:",e.message);
+                resp.status(e.statusCode).json({
+                    err: e.message
+                });
+                console.log(e.message, e.statusCode);
+                // throw new AppError(e.error.message,e.error.statusCode)
+            }
+        });
+    }
+    removeSubscription(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let sub = req.body;
+                yield subscription_service_1.default.removeSubscription(sub);
+                resp.status(200).json({
+                    msg: "success"
+                });
+            }
+            catch (e) {
+                // resp.send(e)
+                // console.log("Error Object:",e.message);
+                resp.status(e.statusCode).json({
+                    err: e.message
+                });
+                console.log(e.message, e.statusCode);
+                // throw new AppError(e.error.message,e.error.statusCode)
             }
         });
     }

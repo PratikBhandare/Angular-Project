@@ -93,9 +93,12 @@ class UserService {
                 likes:true,
                 subscriptions:{
                     author:true,
-                    user:true
+                    user:true,
                 },
-                followers:true
+                followers:{
+                    user:true,
+                },
+                notifications:true
             },
             where:{id:id}
         })
@@ -118,6 +121,21 @@ class UserService {
         
 
         return result.posts;
+    }
+
+    async getUserSunscribedPosts(id:number){
+        console.log(id);
+        let result = await userRepo.findOne({
+            where:{
+                id:id,
+            },
+            relations:{
+                subscriptions:{
+                    author:true
+                }
+            }
+        })
+        return result.subscriptions;
     }
 
     async getUserSubscription(userId:number){

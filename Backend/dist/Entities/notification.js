@@ -9,41 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Post = void 0;
+exports.Notification = void 0;
 const typeorm_1 = require("typeorm");
 const users_1 = require("./users");
-let Post = class Post {
+let Notification = class Notification {
 };
-exports.Post = Post;
+exports.Notification = Notification;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Post.prototype, "id", void 0);
+], Notification.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
-], Post.prototype, "title", void 0);
-__decorate([
-    (0, typeorm_1.Column)('text'),
-    __metadata("design:type", String)
-], Post.prototype, "content", void 0);
+], Notification.prototype, "title", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Post.prototype, "createdAt", void 0);
+], Notification.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Post.prototype, "updatedAt", void 0);
+], Notification.prototype, "updatedAt", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => users_1.User, user => user.posts),
+    (0, typeorm_1.ManyToOne)(() => users_1.User, user => user.id, { onDelete: "CASCADE" }),
     (0, typeorm_1.JoinColumn)({ name: 'userId' }),
     __metadata("design:type", users_1.User)
-], Post.prototype, "author", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Post.prototype, "userId", void 0);
-exports.Post = Post = __decorate([
-    (0, typeorm_1.Entity)()
-], Post);
+], Notification.prototype, "user", void 0);
+exports.Notification = Notification = __decorate([
+    (0, typeorm_1.Entity)("NotificationTable_Blog")
+], Notification);

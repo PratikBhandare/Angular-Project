@@ -34,11 +34,26 @@
     </div>
 
     <!-- Profile Image Section -->
-    <!-- <i class="pi-bolt"></i> -->
-    <img [ngStyle]="{'width':'40px','color':'white'}" src="" alt="">
-    <div class="profileimg" routerLink="user/profile">
+    
+    <!-- <img src="https://cdn-icons-png.flaticon.com/128/3119/3119338.png" alt=""> -->
+    
 
-        <img [src]="loggedUserImg?loggedUserImg:'https://cdn-icons-png.flaticon.com/128/149/149071.png'"
-            alt="Profile Image">
+    <div style="display: flex; gap: 20px; justify-content: center; align-items: center;">
+        <img [ngStyle]="{'width':'30px','height':'30px','color':'white','background-color':'white','border-radius':'50%'}" src="https://cdn-icons-png.flaticon.com/128/3119/3119338.png" alt="" (click)="visible=true" >
+
+        
+
+        <div class="profileimg" routerLink="user/profile">
+            <!-- <i class="pi pi-bell"></i> -->
+    
+            <img [src]="loggedUserImg?loggedUserImg:'https://cdn-icons-png.flaticon.com/128/149/149071.png'"
+                alt="Profile Image">
+        </div>
     </div>
 </div>
+
+<ng-template  #notification><app-notification-list></app-notification-list></ng-template>
+
+<p-drawer [(visible)]="visible" header="Drawer">
+    <ng-container *ngTemplateOutlet="visible?notification:null" ></ng-container>
+</p-drawer>

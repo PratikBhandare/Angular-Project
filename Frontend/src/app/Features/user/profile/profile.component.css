@@ -71,3 +71,18 @@ router-outlet {
   display: block;
   margin-top: 20px;
 }
+
+.u{
+  /* margin-top: -px; */
+  display: flex;
+  flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+  justify-content: flex-start; /* Align items to the start */
+  padding: 20px;
+  gap: 1rem;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  width: 100%; /* Ensure the container takes up the full width */
+  background-color: #dfdfdf4b;
+  margin-bottom: 10px;
+  border-color: black;
+  border: 1px;
+}

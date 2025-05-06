@@ -11,16 +11,18 @@ import { RouteService } from './route.service';
 
 import { ShowProfileComponent } from './show-profile/show-profile.component';
 import { UserProfileResolver } from '../../Core/Guards/user-profile-resolver.guard';
+import { MySubscriptionsComponent } from './my-subscriptions/my-subscriptions.component';
 
 const routes: Routes = [
-  {path:"user/login",component:LoginComponent},
-  {path:"user/signup",component:SignupComponent},
-  {path:"user/profile",component:ProfileComponent,canActivate:[AuthGuard],children:[
+  {path:"login",component:LoginComponent},
+  {path:"signup",component:SignupComponent},
+  {path:"profile",component:ProfileComponent,canActivate:[AuthGuard],children:[
     {path:"blog/display",component:BlogListComponent,resolve:[RouteService]},
+    {path:"mysubscriptions",component:MySubscriptionsComponent},
     // {path:"subscriptions/display",component:SubscriptionListComponent}
   ]},
-  {path:"user/profile/blog/create",component:CreateBlogComponent,canActivate:[AuthGuard]},
-  {path:"user/profile/:id",component:ShowProfileComponent, resolve:{data:UserProfileResolver}}
+  {path:"profile/blog/create",component:CreateBlogComponent,canActivate:[AuthGuard]},
+  {path:"profile/:id",component:ShowProfileComponent, resolve:{data:UserProfileResolver}}
 
 ];
 

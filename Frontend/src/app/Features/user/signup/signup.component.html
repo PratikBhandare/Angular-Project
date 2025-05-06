@@ -18,7 +18,7 @@
     <!-- <div *ngIf="signUpForm.get('email')!.touched && signUpForm.get('email')!.invalid " [ngStyle]="{'color':'red'}">
       <small class="error">Email is required.</small>
     </div> -->
-    <div *ngIf="signUpForm.get('email')!.touched && signUpForm.get('email')!.invalid " [ngStyle]="{'color':'red'}">
+    <div *ngIf="signUpForm.get('email')!.touched && signUpForm.get('email')?.invalid " [ngStyle]="{'color':'red'}">
       <small class="error">Provide correct email</small>
     </div><br>
     

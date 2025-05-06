@@ -93,6 +93,29 @@ class UserController {
             }
         });
     }
+    checkLogin(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let token = req.body.token;
+            console.log("THis is token", token);
+            // console.log("Cookies:",req.cookies.token);
+            if (token && token.startsWith("Bearer")) {
+                console.log(token);
+                token = token.split(" ")[1];
+                try {
+                    let result = jsonwebtoken_1.default.verify(token, secretKey);
+                    console.log("this is Token verification", typeof result);
+                    resp.status(200).json({
+                        user: result
+                    });
+                }
+                catch (err) {
+                    console.log(err);
+                    console.log("Invalid.user");
+                    return;
+                }
+            }
+        });
+    }
     logout(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -120,13 +143,14 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             let id = Number(req.params.id);
             let userdata = yield user_service_1.default.getUserData(id);
-            // console.log(userdata);
+            console.log("Data to check:", userdata);
             resp.send(userdata);
         });
     }
     getUserSubscriptions(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             let r = yield user_service_1.default.getUserSubscription(Number(req.params.id));
+            console.log(r);
             resp.json({
                 result: r
             });
@@ -138,6 +162,14 @@ class UserController {
             let posts = yield user_service_1.default.getUserPosts(id);
             // console.log(userdata);
             resp.json({ posts: posts });
+        });
+    }
+    getUserSunscribedPosts(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let id = Number(req.params.id);
+            let posts = yield user_service_1.default.getUserSunscribedPosts(id);
+            // console.log(userdata);
+            resp.status(200).json({ userSubscribedPosts: posts });
         });
     }
     deletUser(req, resp) {

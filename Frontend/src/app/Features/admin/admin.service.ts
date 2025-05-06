@@ -15,4 +15,7 @@ export class AdminService {
   getUsers(){
     return this.http.get("http://localhost:4000/user/getusers");
   }
+
+  
+
 }

@@ -19,9 +19,18 @@
 <button routerLink="/home/blogs">Read Blogs</button>
 
 <button (click)="getUserBlogs(loggedUser.id!)" routerLink="./blog/display">My Posts</button>
+<button (click)="getUserSubscriptions(loggedUser.id!)" routerLink="./mysubscriptions" >My Subscriptions</button>
+<button (click)="getFollowers(loggedUser.id!)" routerLink="./mysubscriptions" >Followers</button>
 <!-- <button (click)="getUserSubscriptions()" routerLink="subscriptions/display">My Subscriptions</button> -->
+ 
+
+
+
+<!-- {{mySubscriptions | json}} -->
 
 <router-outlet></router-outlet>
+
+
 
 
 

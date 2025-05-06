@@ -5,7 +5,7 @@ import { Post } from "./post";
 import { Like } from "./like";
 import { Comment } from "./comment";
 import { Subscription } from "./subscription";
-
+import { Notification } from "./notification";
 
 @Entity("UsersTable_Blog")
 export class User {
@@ -36,13 +36,16 @@ export class User {
     @OneToMany(() => Like, like => like.user, { cascade: true })
     likes: Like[];
 
-    @Column({ default: true })
-    isActive: boolean; // To handle if the user is active or not.
+    @OneToMany(()=>Notification, notification=>notification.user, {cascade:true})
+    notifications:Notification[]
 
-    // New relationships for subscriptions
+    @Column({ default: true })
+    isActive: boolean; 
+
+
     @OneToMany(() => Subscription, subscription => subscription.user,{cascade:true})
-    subscriptions: Subscription[];  // A user can subscribe to many authors
+    subscriptions: Subscription[];  
 
     @OneToMany(() => Subscription, subscription => subscription.author)
-    followers: Subscription[];  // A user can have many followers (if they are an author)
+    followers: Subscription[];  
 }

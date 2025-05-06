@@ -3,13 +3,22 @@
       <img [src]="'assets/profile-images/'+User.profileImg" alt="Profile Picture" class="profile-pic" />
       <div class="profile-info">
         <h1>{{ User.name }}</h1>
-        <p class="bio">{{ user.bio }}</p>
+        <p class="bio">Bio:{{ user.bio }}</p>
         <p class="total-posts">Total Posts: {{ User.posts?.length }}</p>
+        <p class="total-posts">Followers: {{ User.followers?.length }}</p>
       </div>
       <button *ngIf="loggedUser.role==='Admin'" (click)="disableUser(User.id!)" class="subscribe-button" >
         <!-- {{ isDisabled ? 'Enable' : 'Disable' }} -->
           Ban
       </button>
+
+      <button  (click)="Subscribe()" class="subscribe-button" >
+        {{ isSubscribed ? 'Unsubscribe' : 'Subscribe' }}
+      </button>
+      
+
+
+
 </div>
   
     <div class="blog-posts">

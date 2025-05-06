@@ -16,6 +16,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const error_middleware_1 = require("./Middlewares/error.middleware");
 const subscription_route_1 = __importDefault(require("./Routes/subscription.route"));
+const notification_route_1 = __importDefault(require("./Routes/notification.route"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: 'http://localhost:4200', // Allow only your frontend origin
@@ -24,7 +25,7 @@ app.use((0, cors_1.default)({
 app.use((0, cookie_parser_1.default)());
 app.use(error_middleware_1.errorMiddleare);
 const PORT = process.env.PORT;
-app.use(express_1.default.json({ limit: '50mb' }));
+app.use(express_1.default.json());
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use("/user", user_route_1.default);
@@ -32,6 +33,7 @@ app.use("/post", post_route_1.default);
 app.use("/like", like_route_1.default);
 app.use("/comment", comment_route_1.default);
 app.use("/subscription", subscription_route_1.default);
+app.use("/notification", notification_route_1.default);
 app.listen(PORT, () => {
     console.log(`Server is started on Port ${PORT}`);
 });

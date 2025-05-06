@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../Interfaces/user';
 import { UserService } from '../../user/user.service';
 import { MessageService } from 'primeng/api';
+import { send } from 'process';
 
 
 
@@ -117,6 +118,19 @@ export class BlogCardComponent implements OnChanges  {
       console.log(val);
       if(val.msg){
       this.messageService.add({ severity: 'success', summary: 'Activated..!' })
+      this.sendNotification("Yor Blog is Activated...!",this.Blog.author.id);
+        
+      }
+      
+    })
+  
+  }
+
+  sendNotification(msg:string,userId:number){
+    this.blogService.sendNotification({title:msg,user:userId}).subscribe((val:any)=>{
+      console.log(val);
+      if(val.msg){
+        console.log("notification sent succesfully");
         
       }
       

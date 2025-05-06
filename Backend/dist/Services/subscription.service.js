@@ -9,19 +9,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const subscription_repo_1 = require("../Repositories/subscription.repo");
+const apperror_1 = require("../Utils/apperror");
 class SubscriptionService {
     addSubscription(subscription) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(subscription);
+            let a = yield subscription_repo_1.sunscriptionRepo.query(`select * from subscriptionTable_Blog where author_id=${subscription.author} AND user_id=${subscription.user} `);
+            console.log("Result:", a);
+            if (a.length > 0) {
+                if (a[0].isActive == true) {
+                    console.log("alredy subscribed");
+                    throw new apperror_1.AppError("Alredy subscribed", 409);
+                }
+                else {
+                    console.log("else BLog", a);
+                    yield subscription_repo_1.sunscriptionRepo.update({ id: a[0].id }, { isActive: true });
+                }
+            }
+            else {
+                yield subscription_repo_1.sunscriptionRepo.save(subscription);
+            }
+        });
+    }
+    removeSubscription(subscription) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(subscription);
             let a = yield subscription_repo_1.sunscriptionRepo.query(`select * from subscriptionTable_Blog where author_id=${subscription.author} AND user_id=${subscription.user}`);
             console.log("Result:", a);
             if (a.length > 0) {
                 console.log("alredy subscribed");
-                return false;
+                throw new apperror_1.AppError("Alredy subscribed", 409);
             }
             else {
                 yield subscription_repo_1.sunscriptionRepo.save(subscription);
-                return true;
             }
         });
     }

@@ -20,7 +20,7 @@ class UserService {
             let r = yield user_repo_1.userRepo.findOne({ where: {
                     email: user.email
                 } });
-            // console.log("found:", r);
+            console.log("found:", r);
             if (r) {
                 throw new apperror_1.AppError("Email is Alredy Registered", 409);
             }
@@ -89,13 +89,16 @@ class UserService {
                     likes: true,
                     subscriptions: {
                         author: true,
-                        user: true
+                        user: true,
                     },
-                    followers: true
+                    followers: {
+                        user: true,
+                    },
+                    notifications: true
                 },
                 where: { id: id }
             });
-            // console.log(result);
+            console.log(result);
             return result;
         });
     }
@@ -110,6 +113,22 @@ class UserService {
             });
             console.log(result);
             return result.posts;
+        });
+    }
+    getUserSunscribedPosts(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(id);
+            let result = yield user_repo_1.userRepo.findOne({
+                where: {
+                    id: id,
+                },
+                relations: {
+                    subscriptions: {
+                        author: true
+                    }
+                }
+            });
+            return result.subscriptions;
         });
     }
     getUserSubscription(userId) {

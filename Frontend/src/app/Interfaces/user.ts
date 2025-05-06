@@ -10,4 +10,6 @@ export interface User{
     profileImg:string;
     isActive:string;
     posts:Blog[];
+    notifications:any[];
+    followers:any[]
 }

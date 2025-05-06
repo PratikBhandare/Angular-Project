@@ -6,10 +6,7 @@ import { UserService } from '../user/user.service';
 import { BehaviorSubject, debounceTime } from 'rxjs';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot,Router } from '@angular/router';
 
-import { MessageService } from 'primeng/api';
-import { log } from 'console';
-import { strict } from 'assert';
-
+import { MessageService } from 'primeng/api'; 
 
 
 
@@ -21,13 +18,14 @@ export class BlogService implements Resolve<any>{
 
   
 
-  Blogs:Blog[]=[
-
-  ];
+  Blogs:Blog[]=[];
 
   searchedBlogs:Blog[]=[]
+  
   searchTerm!:string;
+
   searchSubject= new BehaviorSubject<string>("");
+
   private searchResultBlogsSubject=new BehaviorSubject<any>([]);
   searchResult$=this.searchResultBlogsSubject.asObservable()
 
@@ -64,6 +62,9 @@ export class BlogService implements Resolve<any>{
     http.get("http://localhost:4000/post/getActiveposts",{withCredentials:true}).subscribe((val:any)=>{
       console.log(val);
       this.Blogs=val.posts;
+      if(this.Blogs.length<=0){
+        router.navigate(["notfound"])
+      }
       this.BlogsSubject.next(this.Blogs);
       
     })
@@ -79,11 +80,6 @@ export class BlogService implements Resolve<any>{
     
     
     console.log(this.token);
-    
-    // const headers = new HttpHeaders({
-    //   'Authorization': "Bearer "+this.token,  // Example header
-    //   'Content-Type': 'application/json',        // Optional depending on your API
-    // });
     
     try{
 
@@ -153,6 +149,12 @@ export class BlogService implements Resolve<any>{
 
   }
 
+  sendNotification(body:any){
+
+    return this.http.post(`http://localhost:4000/notification/addnotification/`,body)
+
+  }
+
   searchBlogs(search:string){
     console.log("In service: fun",search);
     
@@ -174,9 +176,6 @@ export class BlogService implements Resolve<any>{
 
 
 
-
-
-
 getUserBlogs(userId:number){
     // userId=this.loggedUser.id;
     
@@ -187,6 +186,10 @@ getUserBlogs(userId:number){
       
     })
     
+  }
+
+  getUserSubscriptionBlogs(userId:number){
+    return this.http.get(`http://localhost:4000/user/getusersunscribedposts/${userId}`)
   }
 
   //for showing  full page Blog on another component

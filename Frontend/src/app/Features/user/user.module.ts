@@ -6,13 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import { RouterModule, RouterStateSnapshot } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { AuthGuard } from '../../Core/Guards/auth.guard';
 import { SharedModule } from '../../Shared/shared.module';
 import { UserCardComponent } from './user-card/user-card.component';
 import { ShowProfileComponent } from './show-profile/show-profile.component';
 import { UserProfileResolver } from '../../Core/Guards/user-profile-resolver.guard';
+import { UserRoutingModule } from './user-routing.module';
+import { MySubscriptionsComponent } from './my-subscriptions/my-subscriptions.component';
 
 
 
@@ -26,6 +28,7 @@ import { UserProfileResolver } from '../../Core/Guards/user-profile-resolver.gua
     SignupComponent,
     UserCardComponent,
     ShowProfileComponent,
+    MySubscriptionsComponent,
     
   ],
   imports: [
@@ -35,7 +38,8 @@ import { UserProfileResolver } from '../../Core/Guards/user-profile-resolver.gua
     RouterModule,
     ToastModule,
     SharedModule,
-    
+    UserRoutingModule,
+
   ],providers:[AuthGuard,UserProfileResolver],
   exports:[
     ProfileComponent,

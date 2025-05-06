@@ -5,21 +5,20 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
+    OneToOne,
+    OneToMany
 } from 'typeorm';
 import { User } from './users';
 
 
-@Entity()
-export class Post {
+@Entity("NotificationTable_Blog")
+export class Notification {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({ type: 'varchar', length: 255 })
     title: string;
-
-    @Column('text')
-    content: string;
 
     @CreateDateColumn()
     createdAt: Date;
@@ -27,10 +26,9 @@ export class Post {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @ManyToOne(() => User, user => user.posts)
+    @ManyToOne(() => User, user => user.id, {onDelete:"CASCADE"})
     @JoinColumn({ name: 'userId' })
-    author: User;
+    user: User;
 
-    @Column()
-    userId: number; // Foreign key column
+
 }

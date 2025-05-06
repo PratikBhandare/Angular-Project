@@ -1,0 +1,4 @@
+<div  class="u" >
+    <!-- {{s.author|json}} -->
+    <app-user-card (click)="openProfile(s.author.id)" *ngFor="let s of mySubscriptions" [User]="s.author"></app-user-card>
+</div>

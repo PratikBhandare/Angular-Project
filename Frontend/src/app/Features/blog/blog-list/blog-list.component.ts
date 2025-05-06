@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Blog } from '../../../Interfaces/Blog';
 import { BlogService } from '../blog.service';
 import { UserService } from '../../user/user.service';
@@ -14,7 +14,7 @@ import { log } from 'console';
   templateUrl: './blog-list.component.html',
   styleUrl: './blog-list.component.css'
 })
-export class BlogListComponent implements  OnInit,OnDestroy{
+export class BlogListComponent implements  OnInit,OnDestroy,AfterViewInit{
 
 
   searchTerm!:string;
@@ -60,7 +60,11 @@ export class BlogListComponent implements  OnInit,OnDestroy{
     // this.BlogsArray=this.blogService.Blogs;
     this.blogService.Blogs$.subscribe(val=>{
 
-      this.BlogsArray=val;
+      this.BlogsArray= val;
+      console.log("No of Blogs found:",this.BlogsArray.length);
+      
+
+      
       // console.log("BLogsarray:",this.BlogsArray[1].category);
       
       this.LifeStyleBlogs=this.BlogsArray.filter((val:any)=>{ return val.category==="lifestyle"})
@@ -100,12 +104,16 @@ export class BlogListComponent implements  OnInit,OnDestroy{
 
 
 
-state:string="";
-ngOnInit(): void {
+  state:string="";
+  ngOnInit(): void {
 
-  
     this.state=this.routerService.state;
     console.log("From Component",this.state);
+    
+  }
+
+  ngAfterViewInit(): void {
+    console.log("Afterviewinit");
     
   }
 
@@ -113,14 +121,15 @@ ngOnInit(): void {
     console.log("Blog List On destroy called...");
     
     this.state="";
-  }
-
-
-  openCategory(){
-
-    this.router.navigate([""],{})
     
   }
+
+
+  // openCategory(){
+
+  //   this.router.navigate([""],{})
+    
+  // }
 
 
  

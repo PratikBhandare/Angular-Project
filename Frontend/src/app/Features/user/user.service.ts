@@ -29,17 +29,24 @@ export class UserService
   logged!:User;
   islogged!:boolean;
   token!:string;
-  nextRoute!:string;
+
+
+
 
 
   constructor(private router:Router,private http:HttpClient,private routeService:RouteService,private cookieService:CookieService, private messageService:MessageService) {
-    this.routeService.nextRoute$.subscribe((val)=>{
-      this.nextRoute=val;
- 
-    })
+
+    
+
 
     console.log("UserService");
 
+    
+  }
+
+  checkLogin(token:string){
+    console.log("Comes from App:",token);
+    return this.http.post("http://localhost:4000/user/logincheck",{token:"Bearer "+token})
     
   }
 
@@ -51,6 +58,8 @@ export class UserService
     
       this.http.post("http://localhost:4000/user/login",user,{withCredentials:true}).subscribe((val:any)=>{
       // console.log("This is from http",this.cookieService.get("accestoken"));
+      console.log("Noticitaion login:",val);
+      
 
       // console.log("cookie token:",val.cookie.accestoken);
       
@@ -66,12 +75,13 @@ export class UserService
           this.isAdminSubject.next(true);
         }
         // this.logged.isActive="true"
-        this.cookieService.set("User",JSON.stringify({user:this.logged,token:this.token}),{path:"/",expires:30000000000,secure:true})
+        // this.cookieService.set("User",JSON.stringify({user:this.logged,token:this.token}),{path:"/",expires:30000000000,secure:true})
+        this.cookieService.set("Token",JSON.stringify({token:this.token}),{path:"/",expires:30000000000,secure:true})
         // sessionStorage.setItem("User",JSON.stringify(this.logged))
         this.isLoggedSubject.next(true);
         this.loggedUserSubject.next(this.logged)
         this.tokenSubject.next(this.token);
-        console.log(this.nextRoute);
+        // console.log(this.nextRoute);
         this.router.navigate(["/user/profile"])
 
       
@@ -101,8 +111,10 @@ export class UserService
       if(val.msg){
         this.messageService.add({severity:"success", summary:"success",detail:"User Registerd succesfully.."})
         this.router.navigate(["user/login"])
+        // alert()
+    }else{
+      alert("somthing error..!")
     }
-
     })
 
   }
@@ -124,7 +136,7 @@ export class UserService
   subscribeUser(authorId:number,userId:number){
     console.log(authorId);
     console.log(userId);
-    
+
     let body={author:authorId,user:userId,isActive:true}
     console.log(body);
     
@@ -132,6 +144,19 @@ export class UserService
     return this.http.post(`http://localhost:4000/subscription/add`,body)
 
   }
+
+  unSubscribeUser(authorId:number,userId:number){
+    console.log(authorId);
+    console.log(userId);
+
+    let body={author:authorId,user:userId,isActive:true}
+    console.log(body);
+    
+
+    return this.http.post(`http://localhost:4000/subscription/remove`,body)
+
+  }
+
 
   getUserSubscriptions(userId:number){
 

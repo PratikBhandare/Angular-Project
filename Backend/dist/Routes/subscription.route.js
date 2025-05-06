@@ -6,5 +6,6 @@ const express_1 = __importDefault(require("express"));
 const subscription_controller_1 = __importDefault(require("../Controllers/subscription.controller"));
 const subscriptionRouter = express_1.default.Router();
 subscriptionRouter.post("/add", subscription_controller_1.default.addSubscription);
+subscriptionRouter.post("/remove", subscription_controller_1.default.removeSubscription);
 subscriptionRouter.post("/getallsubscriptions", subscription_controller_1.default.addSubscription);
 module.exports = subscriptionRouter;

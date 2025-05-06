@@ -12,9 +12,6 @@ import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Resolve, 
 
 export class BlogResolver implements Resolve<any>{
 
-  
-  
-
   constructor(private router:Router, private http:HttpClient){
    
   }
@@ -24,6 +21,7 @@ export class BlogResolver implements Resolve<any>{
     let blogId=route.queryParams['postId']
     // let userId=route.queryParams['userId']
     console.log("Inside blog resolve...",blogId);
+    // alert("blog resolve guard...")
     
     return this.http.get(`http://localhost:4000/post/getpostbyid/${blogId}`)
   

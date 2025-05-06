@@ -14,10 +14,12 @@ export class GlobalErrorHandlerService implements ErrorHandler {
         console.log("alredy registerd error..");
         // alert()
         
-        this.messageService.add({severity:"error", summary:"error",detail:"Email is Alredy Registered...!"})
+        // this.messageService.add({severity:"error", summary:"error",detail:``})
+      this.messageService.add({severity:"error", summary:`${error.status}`,detail:`${error.message}`})
+
       return
       }
-      this.messageService.add({severity:"error", summary:"error",detail:``})
+      this.messageService.add({severity:"error", summary:`${error.status}`,detail:`${error.message}`})
       // alert()
 
       return

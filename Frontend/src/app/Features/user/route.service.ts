@@ -7,8 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class RouteService implements Resolve<any>{
 
-  nexrRoutSubject=new BehaviorSubject("home");
-  nextRoute$=this.nexrRoutSubject.asObservable();
+
 
   constructor( ) { 
     console.log("Route Service.......");

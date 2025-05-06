@@ -7,6 +7,7 @@ import subscriptionController from "../Controllers/subscription.controller";
 const subscriptionRouter= express.Router();
 
 subscriptionRouter.post("/add",subscriptionController.addSubscription);
+subscriptionRouter.post("/remove",subscriptionController.removeSubscription);
 subscriptionRouter.post("/getallsubscriptions",subscriptionController.addSubscription);
 
 

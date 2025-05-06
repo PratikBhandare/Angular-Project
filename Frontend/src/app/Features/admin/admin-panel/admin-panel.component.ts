@@ -15,6 +15,8 @@ export class AdminPanelComponent implements OnInit {
 
 
   constructor(private userService:UserService){
+    console.log("Admin panel ");
+    
 
     userService.loggedUser$.subscribe(val=>{
       this.loggedUser=val

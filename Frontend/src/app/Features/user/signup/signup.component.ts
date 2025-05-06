@@ -1,9 +1,11 @@
+
 import { Component } from '@angular/core';
 import { FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { User } from '../../../Interfaces/user';
 import { HttpClient } from '@angular/common/http';
-import { spaceValidator } from '../../../Core/Custome Validators/noSpaceValidator';
+
+
 
 @Component({
   selector: 'app-signup',
@@ -42,12 +44,15 @@ export class SignupComponent {
 
 
   register(e:any){
-    e.preventDefault();
     console.log(this.signUpForm.value);
     this.formData.append("user",JSON.stringify(this.signUpForm.value))
     // console.log("Inside form",this.formData.get("user"));
     
     this.userService.register(this.formData);
+    this.formData.delete("user")
+    this.formData.delete("pimg")
+    e.preventDefault();
+
   }
 
 }

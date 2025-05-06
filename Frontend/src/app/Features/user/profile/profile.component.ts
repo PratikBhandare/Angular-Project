@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   token!:string;
 
   profileImg!:string;
+  mySubscriptions:any[]=[]
 
 
 
@@ -73,6 +74,20 @@ export class ProfileComponent implements OnInit {
     this.blogService.getUserBlogs(userId);
 
   }
+
+  getUserSubscriptions(userId:number){
+    console.log("Hello",userId);
+    
+     this.blogService.getUserSubscriptionBlogs(userId).subscribe((val:any)=>{
+      console.log("SubscribedBlogs",val.userSubscribedPosts);
+      this.mySubscriptions=val.userSubscribedPosts
+     })
+
+  }
+
+  getFollowers(userId:number){
+
+  }
   // getUserSubscriptions(){
   //   console.log("Here...");
     
@@ -85,7 +100,8 @@ export class ProfileComponent implements OnInit {
   logOut(){
     console.log("button called");
     
-    this.cookieService.delete("User","/")
+    // this.cookieService.delete("User","/")
+    this.cookieService.delete("Token","/")
   }
 
   getValue(msg:any){

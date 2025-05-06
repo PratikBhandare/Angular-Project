@@ -30,6 +30,7 @@ const upload=multer({storage:storage})
 const userRouter= express.Router();
 
 userRouter.post("/login",userController.login);
+userRouter.post("/logincheck",userController.checkLogin);
 
 userRouter.get("/logout",userController.logout);
 
@@ -47,6 +48,8 @@ userRouter.get("/getuserdata/:id",userController.getUserDaata);
 
 
 userRouter.get("/getuserposts/:id",userController.getUserPosts);
+
+userRouter.get("/getusersunscribedposts/:id",userController.getUserSunscribedPosts);
 
 userRouter.get("/getusersubscriptions/:id",userController.getUserSubscriptions);
 

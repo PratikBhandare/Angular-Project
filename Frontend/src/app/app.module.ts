@@ -40,6 +40,10 @@ import { UserRoutingModule } from './Features/user/user-routing.module';
 import { AdminRoutingModule } from './Features/admin/admin-routing.module';
 import { BlogRoutingModule } from './Features/blog/blog-routing.module';
 
+import { NotificationModule } from './Core/Components/notification/notification.module';
+import { DrawerModule } from 'primeng/drawer';
+
+
 
 
 
@@ -59,6 +63,7 @@ import { BlogRoutingModule } from './Features/blog/blog-routing.module';
 
 
 
+
     
   ],
   imports: [
@@ -74,7 +79,9 @@ import { BlogRoutingModule } from './Features/blog/blog-routing.module';
     AdminRoutingModule,
     BlogRoutingModule,
     UserRoutingModule,
-    BlogModule
+    BlogModule,
+    NotificationModule,
+    DrawerModule
     
 ],
   providers: [

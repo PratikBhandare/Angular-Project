@@ -13,6 +13,7 @@ export class NavBarComponent {
   isLogged!:boolean;
   loggedUser!:any;
   loggedUserImg!:string;
+  visible:boolean=false;
   constructor(private userService:UserService, private router:Router){
     console.log("Nav called");
     
@@ -21,6 +22,8 @@ export class NavBarComponent {
     })
     userService.loggedUser$.subscribe((val:any)=>{
       this.loggedUser=val;
+      console.log("Notification check:",this.loggedUser);
+      
       console.log("image in nav:",val.profileImg);
       
       if(val.profileImg){

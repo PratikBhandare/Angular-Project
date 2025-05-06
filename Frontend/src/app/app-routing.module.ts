@@ -43,8 +43,10 @@ const routes: Routes = [
     {path:"getusers",component:UsersListComponent},
     {path:"getblogrequests",component:UploadBlogRequestsComponent}
   ]},
+  
   {path:"about",component:AboutComponent},
   {path:"contact",component:ContactComponent},
+  // {path:"notification",component:NotificationComponent},
   // {path:"user/login",component:LoginComponent},
   // {path:"user/signup",component:SignupComponent},
 
@@ -58,6 +60,7 @@ const routes: Routes = [
   // {path:"user/profile/blog/create",component:CreateBlogComponent,canActivate:[AuthGuard]},
 
   {path:"notfound",component:NotFoundComponent},
+  // {path:"**",component:NotFoundComponent},
 
   // {path:"user/profile/:id",component:ShowProfileComponent, resolve:{data:UserProfileResolver}}
   // {path:"user/profile/:id",component:ShowProfileComponent}

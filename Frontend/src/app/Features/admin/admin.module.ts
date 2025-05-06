@@ -24,6 +24,9 @@ import { UserModule } from '../user/user.module';
     BlogModule,
     UserModule
     
+  ],
+  exports:[
+    UsersListComponent
   ]
 })
 export class AdminModule { }

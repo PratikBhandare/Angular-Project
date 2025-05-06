@@ -16,7 +16,6 @@ export class UserProfileResolver implements Resolve<any>{
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let userId=route.params['id']
-    let User:any;
 
     return this.userService.getUserProfile(userId)
 

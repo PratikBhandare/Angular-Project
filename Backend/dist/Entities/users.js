@@ -16,6 +16,7 @@ const post_1 = require("./post");
 const like_1 = require("./like");
 const comment_1 = require("./comment");
 const subscription_1 = require("./subscription");
+const notification_1 = require("./notification");
 let User = class User {
 };
 exports.User = User;
@@ -55,6 +56,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => like_1.Like, like => like.user, { cascade: true }),
     __metadata("design:type", Array)
 ], User.prototype, "likes", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => notification_1.Notification, notification => notification.user, { cascade: true }),
+    __metadata("design:type", Array)
+], User.prototype, "notifications", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: true }),
     __metadata("design:type", Boolean)

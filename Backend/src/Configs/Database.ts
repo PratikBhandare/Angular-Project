@@ -4,6 +4,7 @@ import { Post } from "../Entities/post"
 import { Like } from "../Entities/like"
 import { Comment } from "../Entities/comment"
 import { Subscription } from "../Entities/subscription"
+import { Notification } from "../Entities/notification"
 
 
 
@@ -16,7 +17,7 @@ export const AppDataSOurce = new DataSource({
     port:Number(process.env.DB_PORT),
     synchronize:true,
     logging:true,
-    entities:[User,Post,Comment,Like,Subscription],
+    entities:[User,Post,Comment,Like,Subscription,Notification],
     options:{
         trustServerCertificate:true,
         encrypt:true

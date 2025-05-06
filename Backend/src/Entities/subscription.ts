@@ -9,15 +9,15 @@ export class Subscription {
 
   @ManyToOne(() => User, user => user.subscriptions,{onDelete:'CASCADE'})
   @JoinColumn({ name: 'user_id' })
-  user: User;  // Relationship with the user (the subscriber)
+  user: User;  
 
   @ManyToOne(() => User, user => user.followers)
   @JoinColumn({ name: 'author_id' })
-  author: User;  // Relationship with the author (the user being subscribed to)
+  author: User;  
 
   @CreateDateColumn()
-  createdAt: Date;  // Date the subscription was created
+  createdAt: Date;  
 
   @Column({ default: true })
-  isActive: boolean;  // Whether the subscription is active
+  isActive: boolean;
 }

@@ -7,6 +7,7 @@ import { UsersListComponent } from '../../admin/users-list/users-list.component'
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../blog/blog.service';
 import { MessageService } from 'primeng/api';
+import { log } from 'console';
 
 @Component({
   selector: 'app-show-profile',
@@ -16,67 +17,67 @@ import { MessageService } from 'primeng/api';
 })
 export class ShowProfileComponent {
 
-  User!:Partial<User>;
-  loggedUser!:User;
-  isDisabled:boolean=false;
+  User!: Partial<User>;
+  loggedUser!: User;
+  isDisabled: boolean = false;
 
 
-  constructor(private userService:UserService, private router:ActivatedRoute, private blogService:BlogService, private messageService:MessageService){
+  constructor(private userService: UserService, private router: ActivatedRoute, private blogService: BlogService, private messageService: MessageService) {
     // this.userService.loggedUser$.subscribe((val:Partial<User>)=>{
     //   this.User=val;
     // })
     // console.log(this.User);
 
-    let userData=router.snapshot.data["data"]
-    this.User=userData
+    let userData = router.snapshot.data["data"]
+    this.User = userData
 
-    this.isDisabled=Boolean(this.User.isActive) ;
+    this.isDisabled = Boolean(this.User.isActive);
 
     console.log(typeof this.User.isActive);
-    
-    console.log("Resolved data :",userData);
 
-    userService.loggedUser$.subscribe((val:any)=>{
-      this.loggedUser=val;
+    console.log("Resolved data :", userData);
+
+    userService.loggedUser$.subscribe((val: any) => {
+      this.loggedUser = val;
     })
 
-    
-    
+
+
 
     // let r=userService.getUserProfile().subscribe()
-    
+
 
 
 
   }
-  subscribe(authorId:number,){
-    console.log("in subscribe:",authorId);
-    
+  subscribe(authorId: number,) {
+    console.log("in subscribe:", authorId);
 
-    this.userService.subscribeUser(authorId,this.loggedUser.id!).subscribe(val=>{
+
+    this.userService.subscribeUser(authorId, this.loggedUser.id!).subscribe(val => {
       console.log(val);
-      
+
     })
 
 
   }
 
-  disableUser(userId:number){
-    this.userService.disableUser(userId).subscribe((val:any)=>{
-      if(val.msg){
-        this.isDisabled=true;
-        this.messageService.add({severity:"success", summary:"success",detail:"User Disabled.."})
+  disableUser(userId: number) {
+    this.userService.disableUser(userId).subscribe((val: any) => {
+      if (val.msg) {
+        this.isDisabled = true;
+        this.messageService.add({ severity: "success", summary: "success", detail: "User Disabled.." })
 
-        
+
       }
     })
   }
 
-  openActiveBlog(blogId:number){
+  openActiveBlog(blogId: number) {
     console.log("Active Blog");
-    this.blogService.openBlog(blogId,this.loggedUser.id!)
+    this.blogService.openBlog(blogId, this.loggedUser.id!)
 
-  
+
   }
 
   user = {
@@ -110,14 +111,37 @@ export class ShowProfileComponent {
 
 
   ngOnInit(): void {
+    console.log("Followers:",this.User.followers);
+    
+    for(let i=0;i<this.User.followers!.length;i++){
+      if(this.loggedUser.id===this.User.followers![i].user.id){
+        if(this.User.followers![i].isActive===true){
+          this.isSubscribed=true;
+        }
+      }
+
+    }
   }
 
   likePost(post: any): void {
     post.likes++;
   }
 
-  toggleSubscribe(): void {
-    this.isSubscribed = !this.isSubscribed;
+  Subscribe(): void {
+    this.userService.subscribeUser(this.User.id!, this.loggedUser.id!).subscribe((val: any) => {
+      console.log(val);
+      
+      if (val.msg) {
+        console.log(val);
+        this.isSubscribed = !this.isSubscribed;
+        this.blogService.sendNotification({title:`${this.loggedUser.name} Subscribed you..!`,user:this.User.id}).subscribe((val:any)=>{
+          if(val.msg){
+            console.log(("Message sent succesfully..!"));
+            
+          }
+        })
+      }
+    })
   }
 
 }
